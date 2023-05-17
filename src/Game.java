@@ -1,6 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     private ArrayList<Enemy> game = new ArrayList<>();
@@ -29,7 +31,7 @@ public class Game {
     public ArrayList<Enemy> createHouse() {
 
         Random r = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             int random = r.nextInt(10) + 1;
             game.add(new Enemy(random));
         }
@@ -37,7 +39,24 @@ public class Game {
 
     }
 
+    public void script(){
+        try {
+            File script = new File("script.txt");
+            Scanner sc = new Scanner(script);
+            while (sc.hasNextLine()) {
+                String data = sc.nextLine();
+                System.out.println(data);
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+    }
+
     public String mainLoop()  {
+        script();
         createHouse();
         int cycle = 0;
         for (int i = 0; i < game.size(); i++) {
