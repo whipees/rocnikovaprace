@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Game {
     private ArrayList<Enemy> game = new ArrayList<>();
     private Player p = new Player(10, "Laura");
+    private int skipChoice = 2;
 
     public Game() {
 
@@ -32,7 +33,7 @@ public class Game {
 
         Random r = new Random();
         for (int i = 0; i < 15; i++) {
-            int random = r.nextInt(10) + 1;
+            int random = r.nextInt(8) + 1;
             game.add(new Enemy(random));
         }
         return game;
@@ -61,7 +62,7 @@ public class Game {
         int cycle = 0;
         for (int i = 0; i < game.size(); i++) {
             System.out.println(roomReturn(cycle));
-            System.out.println(fight(cycle));
+            choice(cycle);
             cycle++;
         }
         return "bye";
@@ -74,6 +75,7 @@ public class Game {
     public String luckykM() {
         return "Lucky you, you always strike first";
     }
+
 
     public String fight(int a) {
 
@@ -90,6 +92,26 @@ public class Game {
             p.setHealth(p.health + 5);
             return "congratulations, you defeated the enemy and gained plus 5 health";
         }
+    }
+
+    public void choice(int a){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(choiceQ());
+
+        switch (sc.nextInt()){
+            case 1:
+                System.out.println(fight(a));
+            break;
+            case 2:
+        }
+
+    }
+
+    public String choiceQ(){
+        return "Choose your option: \n " +
+                "1) Fight  \n" +
+                "2) Skip \n" +
+                "3) Heal";
     }
 
 
