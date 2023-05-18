@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+    private Messages m = new Messages();
     private ArrayList<Enemy> game = new ArrayList<>();
     private Player p = new Player(10, "Laura");
     private int skipChoice = 2;
@@ -39,8 +40,7 @@ public class Game {
         return game;
 
     }
-
-    public void script(){
+    public void script() {
         try {
             File script = new File("script.txt");
             Scanner sc = new Scanner(script);
@@ -55,14 +55,14 @@ public class Game {
         }
 
     }
-
-    public String mainLoop()  {
+    public String mainLoop() {
         script();
         createHouse();
         int cycle = 0;
         for (int i = 0; i < game.size(); i++) {
             System.out.println(roomReturn(cycle));
             choice(cycle);
+            System.out.println(healthcheck());
             cycle++;
         }
         return "bye";
@@ -71,49 +71,52 @@ public class Game {
     public String roomReturn(int cycle) {
         return "You are in a room " + cycle + " " + "enemy there has: " + game.get(cycle).health + " " + "health";
     }
-
-    public String luckykM() {
-        return "Lucky you, you always strike first";
-    }
-
-
     public String fight(int a) {
+        boolean checker = true;
 
-        luckykM();
-        while (game.get(a).health > 0 || p.health > 0) {
+        System.out.println(m.luckykM());
+        while (checker) {
             game.get(a).health--;
             p.health--;
             System.out.println("your health is: " + p.getHealth());
-
+            if (game.get(a).health < 1) {
+                checker = false;
+            }
+            if (p.health < 1) {
+                checker = false;
+            }
         }
         if (p.getHealth() == 0) {
             return "oh no, you lost";
         } else {
-            p.setHealth(p.health + 5);
-            return "congratulations, you defeated the enemy and gained plus 5 health";
+            if (p.health < 4) {
+                p.setHealth(p.health + 5);
+                return "congratulations, you defeated the enemy and gained plus 5 health... you now have: " + p.health;
+            }
+
+            return "congratulations, you defeated the enemy... you now have: " + p.health;
         }
     }
 
-    public void choice(int a){
+    public void choice(int a) {
         Scanner sc = new Scanner(System.in);
-        System.out.println(choiceQ());
+        System.out.println(m.choiceQ());
 
-        switch (sc.nextInt()){
+        switch (sc.nextInt()) {
             case 1:
                 System.out.println(fight(a));
-            break;
+                break;
             case 2:
         }
 
     }
 
-    public String choiceQ(){
-        return "Choose your option: \n " +
-                "1) Fight  \n" +
-                "2) Skip \n" +
-                "3) Heal";
+    public String healthcheck() {
+        if (p.health <= 0) {
+            System.exit(69);
+            return null;
+        } else return "You are ready to win, be careful";
     }
-
 
     @Override
     public String toString() {
