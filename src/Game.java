@@ -60,6 +60,7 @@ public class Game {
     public String mainLoop() {
         script();
         game = new ArrayList<Enemy>();
+        p.setHealth(10);
         createHouse();
 
         for (int i = 0; i < game.size(); i++) {
@@ -79,18 +80,21 @@ public class Game {
         System.out.println(m.luckykM());
         while (checker) {
             game.get(a).health--;
-            p.health--;
-            System.out.println("your health is: " + p.getHealth());
             if (game.get(a).health < 1) {
                 checker = false;
+            }else {
+                p.health--;
+                System.out.println("your health is: " + p.getHealth());
+
+                if (p.health < 1) {
+                    checker = false;
+                }
             }
-            if (p.health < 1) {
-                checker = false;
-            }
+
         }
         if (p.getHealth() == 0) {
             mainLoop();
-            return "oh no, you lost, try again";
+            return null;
         } else {
             if (p.health < 4) {
                 p.setHealth(p.health + 5);

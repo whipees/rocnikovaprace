@@ -4,3 +4,4 @@ There are 15 rooms.
 You have the ability to skip two rooms twice in this game.
 You also have the ability to gain 4 health points 3 times.
 Your name is Laura and you have 10 health points, on every win, you get 5 more, so it should be easy to get out of here.
+If you lose, the game will restart, so play until you win haha.
