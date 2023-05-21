@@ -8,10 +8,29 @@ public class Game {
     private Messages m = new Messages();
     private ArrayList<Enemy> game = new ArrayList<>();
     private Player p = new Player(10, "Laura");
-    private int skipChoice = 2;
+    private int skipChoice;
+
+    private int healercheck;
+    private int arraylist;
 
     public Game() {
 
+    }
+
+    public Messages getM() {
+        return m;
+    }
+
+    public void setM(Messages m) {
+        this.m = m;
+    }
+
+    public int getArraylist() {
+        return arraylist;
+    }
+
+    public void setArraylist(int arraylist) {
+        this.arraylist = arraylist;
     }
 
     public ArrayList<Enemy> getGame() {
@@ -28,6 +47,22 @@ public class Game {
 
     public void setP(Player p) {
         this.p = p;
+    }
+
+    public int getSkipChoice() {
+        return skipChoice;
+    }
+
+    public void setSkipChoice(int skipChoice) {
+        this.skipChoice = skipChoice;
+    }
+
+    public int getHealercheck() {
+        return healercheck;
+    }
+
+    public void setHealercheck(int healercheck) {
+        this.healercheck = healercheck;
     }
 
     public ArrayList<Enemy> createHouse() {
@@ -61,13 +96,17 @@ public class Game {
         script();
         game = new ArrayList<Enemy>();
         p.setHealth(10);
+        setHealercheck(3);
+        setSkipChoice(2);
+        setArraylist(0);
         createHouse();
 
-        for (int i = 0; i < game.size(); i++) {
+        for (int i = getArraylist(); i<15;i++) {
             System.out.println(roomReturn(i));
             choice(i, i);
+
         }
-        return "bye";
+        return "You won, congratulations";
     }
 
     public String roomReturn(int cycle) {
@@ -76,13 +115,12 @@ public class Game {
 
     public String fight(int a) {
         boolean checker = true;
-
         System.out.println(m.luckykM());
         while (checker) {
             game.get(a).health--;
             if (game.get(a).health < 1) {
                 checker = false;
-            }else {
+            } else {
                 p.health--;
                 System.out.println("your health is: " + p.getHealth());
 
@@ -90,7 +128,6 @@ public class Game {
                     checker = false;
                 }
             }
-
         }
         if (p.getHealth() == 0) {
             mainLoop();
@@ -105,13 +142,24 @@ public class Game {
         }
     }
 
-
     public void skip(int skipper) {
         skipChoice--;
-
         if (skipChoice > 0) {
-            game.get(skipper + 2);
+            setArraylist(arraylist+2);
+
         }
+    }
+
+    public String heal() {
+        if (healercheck > 0) {
+            healercheck--;
+            p.setHealth(p.health + 4);
+            return "Successfully healed";
+        } else {
+            return "You cannot heal anymore";
+        }
+
+
     }
 
     public void choice(int a, int skip) {
@@ -130,6 +178,9 @@ public class Game {
                         skip(skip);
                         check = false;
                         break;
+                    case 3:
+                        System.out.println(heal());
+                        break;
                     default:
                         throw new RuntimeException();
                 }
@@ -137,10 +188,7 @@ public class Game {
                 System.out.println("try again");
             }
         }
-
-
     }
-
 
     @Override
     public String toString() {
