@@ -40,6 +40,7 @@ public class Game {
         return game;
 
     }
+
     public void script() {
         try {
             File script = new File("script.txt");
@@ -55,15 +56,15 @@ public class Game {
         }
 
     }
+
     public String mainLoop() {
         script();
+        game = new ArrayList<Enemy>();
         createHouse();
-        int cycle = 0;
+
         for (int i = 0; i < game.size(); i++) {
-            System.out.println(roomReturn(cycle));
-            choice(cycle);
-            System.out.println(healthcheck());
-            cycle++;
+            System.out.println(roomReturn(i));
+            choice(i, i);
         }
         return "bye";
     }
@@ -71,6 +72,7 @@ public class Game {
     public String roomReturn(int cycle) {
         return "You are in a room " + cycle + " " + "enemy there has: " + game.get(cycle).health + " " + "health";
     }
+
     public String fight(int a) {
         boolean checker = true;
 
@@ -87,7 +89,8 @@ public class Game {
             }
         }
         if (p.getHealth() == 0) {
-            return "oh no, you lost";
+            mainLoop();
+            return "oh no, you lost, try again";
         } else {
             if (p.health < 4) {
                 p.setHealth(p.health + 5);
@@ -98,25 +101,42 @@ public class Game {
         }
     }
 
-    public void choice(int a) {
+
+    public void skip(int skipper) {
+        skipChoice--;
+
+        if (skipChoice > 0) {
+            game.get(skipper + 2);
+        }
+    }
+
+    public void choice(int a, int skip) {
         Scanner sc = new Scanner(System.in);
         System.out.println(m.choiceQ());
+        boolean check = true;
+        while (check) {
+            try {
+                switch (sc.nextInt()) {
 
-        switch (sc.nextInt()) {
-            case 1:
-                System.out.println(fight(a));
-                break;
-            case 2:
+                    case 1:
+                        System.out.println(fight(a));
+                        check = false;
+                        break;
+                    case 2:
+                        skip(skip);
+                        check = false;
+                        break;
+                    default:
+                        throw new RuntimeException();
+                }
+            } catch (RuntimeException r) {
+                System.out.println("try again");
+            }
         }
 
+
     }
 
-    public String healthcheck() {
-        if (p.health <= 0) {
-            System.exit(69);
-            return null;
-        } else return "You are ready to win, be careful";
-    }
 
     @Override
     public String toString() {
