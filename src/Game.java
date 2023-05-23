@@ -142,12 +142,18 @@ public class Game {
         }
     }
 
-    public void skip(int skipper) {
+    public String skip(){
+        boolean checker = true;
         skipChoice--;
-        if (skipChoice > 0) {
-            setArraylist(arraylist+2);
+//        while (checker){
+            if (skipChoice>=0){
+                checker=false;
+                return "Successfully skipped one room! ";
+            }else {
+                return "You are out of skips!";
+            }
+//        }
 
-        }
     }
 
     public String heal() {
@@ -158,8 +164,6 @@ public class Game {
         } else {
             return "You cannot heal anymore";
         }
-
-
     }
 
     public void choice(int a, int skip) {
@@ -175,8 +179,10 @@ public class Game {
                         check = false;
                         break;
                     case 2:
-                        skip(skip);
-                        check = false;
+                        System.out.println(skip());
+                        if (skipChoice>=0){
+                            check = false;
+                        }
                         break;
                     case 3:
                         System.out.println(heal());
@@ -186,6 +192,7 @@ public class Game {
                 }
             } catch (RuntimeException r) {
                 System.out.println("try again");
+                sc.nextLine();
             }
         }
     }
