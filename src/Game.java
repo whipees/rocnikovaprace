@@ -65,14 +65,14 @@ public class Game {
         this.healercheck = healercheck;
     }
 
-    public ArrayList<Enemy> createHouse() {
+    public void createHouse() {
 
         Random r = new Random();
         for (int i = 0; i < 15; i++) {
             int random = r.nextInt(8) + 1;
             game.add(new Enemy(random));
         }
-        return game;
+
 
     }
 
@@ -94,7 +94,7 @@ public class Game {
 
     public String mainLoop() {
         script();
-        game = new ArrayList<Enemy>();
+        game = new ArrayList<>();
         p.setHealth(10);
         setHealercheck(3);
         setSkipChoice(2);
@@ -103,7 +103,7 @@ public class Game {
 
         for (int i = getArraylist(); i<15;i++) {
             System.out.println(roomReturn(i));
-            choice(i, i);
+            choice(i);
 
         }
         return "You won, congratulations";
@@ -143,17 +143,12 @@ public class Game {
     }
 
     public String skip(){
-        boolean checker = true;
         skipChoice--;
-//        while (checker){
             if (skipChoice>=0){
-                checker=false;
                 return "Successfully skipped one room! ";
             }else {
                 return "You are out of skips!";
             }
-//        }
-
     }
 
     public String heal() {
@@ -166,29 +161,25 @@ public class Game {
         }
     }
 
-    public void choice(int a, int skip) {
+    public void choice(int a) {
         Scanner sc = new Scanner(System.in);
         System.out.println(m.choiceQ());
         boolean check = true;
         while (check) {
             try {
                 switch (sc.nextInt()) {
-
-                    case 1:
+                    case 1 -> {
                         System.out.println(fight(a));
                         check = false;
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.println(skip());
-                        if (skipChoice>=0){
+                        if (skipChoice >= 0) {
                             check = false;
                         }
-                        break;
-                    case 3:
-                        System.out.println(heal());
-                        break;
-                    default:
-                        throw new RuntimeException();
+                    }
+                    case 3 -> System.out.println(heal());
+                    default -> throw new RuntimeException();
                 }
             } catch (RuntimeException r) {
                 System.out.println("try again");
