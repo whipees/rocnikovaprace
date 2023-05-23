@@ -101,7 +101,7 @@ public class Game {
         setArraylist(0);
         createHouse();
 
-        for (int i = getArraylist(); i<15;i++) {
+        for (int i = getArraylist(); i < 15; i++) {
             System.out.println(roomReturn(i));
             choice(i);
 
@@ -142,13 +142,13 @@ public class Game {
         }
     }
 
-    public String skip(){
+    public String skip() {
         skipChoice--;
-            if (skipChoice>=0){
-                return "Successfully skipped one room! ";
-            }else {
-                return "You are out of skips!";
-            }
+        if (skipChoice >= 0) {
+            return "Successfully skipped one room! ";
+        } else {
+            return "You are out of skips!";
+        }
     }
 
     public String heal() {
@@ -163,9 +163,10 @@ public class Game {
 
     public void choice(int a) {
         Scanner sc = new Scanner(System.in);
-        System.out.println(m.choiceQ());
+
         boolean check = true;
         while (check) {
+            System.out.println(m.choiceQ());
             try {
                 switch (sc.nextInt()) {
                     case 1 -> {
@@ -179,6 +180,10 @@ public class Game {
                         }
                     }
                     case 3 -> System.out.println(heal());
+                    case 4 -> {
+                        Shop s = new Shop();
+                        s.openShop();
+                    }
                     default -> throw new RuntimeException();
                 }
             } catch (RuntimeException r) {

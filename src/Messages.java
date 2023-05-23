@@ -8,16 +8,34 @@ public  class Messages {
                 Choose your option:\s
                  1) Fight \s
                 2) Skip\s
-                3) Heal""";
+                3) Heal\s
+                4) Shop""";
     }
 
     public String shopMenu(){
-        return "Hey you, \n" +
-                " welcome in my shop, \n" +
-                " my name is JArEd and I work here for about 100 hundred years now haha, you don't need to be scared of me I know I have a little beard going on, but no worries, I'll shave it haha. \n" +
-                " You can buy heals and skippers here! \n" +
-                " Are you interested, go around and have a look, I'm waiting.";
+        return """
+                Hey you,\s
+                 welcome in my shop,\s
+                 my name is JArEd and I work here for about hundred years now haha, you don't need to be scared of me I know I have a little beard going on, but no worries, I'll shave it haha.\s
+                 You can buy heals and skippers here!\s
+                 Are you interested?
+                 Go around and have a look, I'm waiting.""";
     }
+
+    public String optionsText(){
+        return """
+                Choose your option:\s
+                 1) Gamble \s
+                2) Buy heals\s
+                3) Buy skippers\s
+                4) Exit shop
+                """;
+    }
+
+    public String gambleText(){
+        return " Oh, I see that you picked gamble, hahahah. Let's see if you can answer there questions";
+    }
+
 
 
 
