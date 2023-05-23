@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -46,6 +47,7 @@ public class Shop {
                     switch (choice) {
                         case 1:
                             System.out.println(gamble());
+                            check = false;
                             break;
                         case 2:
                             System.out.println("Fd");
@@ -55,7 +57,6 @@ public class Shop {
                             break;
                         case 4:
                             check = false;
-                            System.out.println(m.choiceQ());
                             break;
                         default:
                             throw new RuntimeException();
@@ -71,7 +72,6 @@ public class Shop {
     }
 
     public String gamble() {
-        Game g = new Game();
         m.gambleText();
         setCorrectCounter(0);
 
@@ -83,17 +83,24 @@ public class Shop {
 
             System.out.println("How much is " + a + "+ " + b + "?");
 
+            boolean checker = true;
 
-            int pAns = sc.nextInt();
-
-            if (ans == pAns) {
-                correctCounter++;
-                System.out.println("Correct!");
-            } else {
-                System.out.println("wrong, omg.");
+            while (checker) {
+                try {
+                    int pAns = sc.nextInt();
+                    checker = false;
+                    if (ans == pAns) {
+                        correctCounter++;
+                        System.out.println("Correct!");
+                    } else {
+                        System.out.println("wrong, omg.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("try again");
+                    sc.nextLine();
+                }
             }
-        }
-
+            }
 
         if (correctCounter == 3) {
             setPoints(getPoints() + 5);
