@@ -8,7 +8,9 @@ public class Shop {
     private Random r = new Random();
     private int points;
 
-
+    /**
+     * counts corrext answers in gamble
+     */
     private int correctCounter;
 
     public Shop() {
@@ -30,9 +32,13 @@ public class Shop {
         this.correctCounter = correctCounter;
     }
 
+    /**
+     * method that opens when player pick shop in game
+     * plays enter message and opens switch for choices
+     */
     public void openShop() {
         System.out.println(m.shopMenu());
-        // TODO: 23.05.2023 muzu si nakoupit healy a skipy, bude davat otazky a veci za free
+
         System.out.println(m.optionsText());
 
         boolean check = true;
@@ -56,10 +62,11 @@ public class Shop {
     }
 
 
-
-
-
-
+    /**
+     * Method for gamble choice
+     * makes math quiz for points
+     * @return num of points playr gets
+     */
     public String gamble() {
         m.gambleText();
         setCorrectCounter(0);
@@ -109,6 +116,9 @@ public class Shop {
 
     }
 
+    /**
+     * method for buying heals for points
+     */
     public void buyHeals(){
         Game g = new Game();
         System.out.println("You have: "+ points+ " Points");

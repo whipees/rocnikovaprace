@@ -1,8 +1,16 @@
 public  class Messages {
-
+    /**
+     *
+     * @return message before every fight
+     */
     public String luckykM() {
         return "Lucky you, you always strike first";
     }
+
+    /**
+     * prints all the thing in choice in Game
+     * @return all actions
+     */
     public String choiceQ(){
         return """
                 Choose your option:\s
@@ -12,6 +20,10 @@ public  class Messages {
                 4) Shop""";
     }
 
+    /**
+     * Method for the Shop
+     * @return message if you enter shop
+     */
     public String shopMenu(){
         return """
                 Hey you,\s
@@ -22,6 +34,10 @@ public  class Messages {
                  Go around and have a look, I'm waiting.""";
     }
 
+    /**
+     *
+     * @return choices in shop
+     */
     public String optionsText(){
         return """
                 Choose your option:\s
@@ -32,6 +48,10 @@ public  class Messages {
                 """;
     }
 
+    /**
+     * Method if gamble
+     * @return funny message if you pick gamble
+     */
     public String gambleText(){
         return " Oh, I see that you picked gamble, hahahah. Let's see if you can answer there questions";
     }

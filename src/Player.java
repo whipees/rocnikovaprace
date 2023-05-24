@@ -1,5 +1,14 @@
+/**
+ * Same as character but with added name
+ */
 public class Player extends Character {
     private String name;
+
+    /**
+     * Constructor for player
+     * @param health
+     * @param name
+     */
 
     public Player(int health, String name) {
         super(health);
