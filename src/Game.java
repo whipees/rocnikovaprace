@@ -98,10 +98,9 @@ public class Game {
         p.setHealth(10);
         setHealercheck(3);
         setSkipChoice(2);
-        setArraylist(0);
         createHouse();
 
-        for (int i = getArraylist(); i < 15; i++) {
+        for (int i = 0; i < 15; i++) {
             System.out.println(roomReturn(i));
             choice(i);
 
@@ -163,12 +162,14 @@ public class Game {
 
     public void choice(int a) {
         Scanner sc = new Scanner(System.in);
-
+        Shop s = new Shop();
         boolean check = true;
         while (check) {
             System.out.println(m.choiceQ());
+            System.out.println("Num of healers: "+ healercheck + " Num of Skippers: "+ skipChoice);
             try {
                 switch (sc.nextInt()) {
+                    default -> throw new RuntimeException();
                     case 1 -> {
                         System.out.println(fight(a));
                         check = false;
@@ -180,11 +181,8 @@ public class Game {
                         }
                     }
                     case 3 -> System.out.println(heal());
-                    case 4 -> {
-                        Shop s = new Shop();
-                        s.openShop();
-                    }
-                    default -> throw new RuntimeException();
+                    case 4 -> s.openShop();
+
                 }
             } catch (RuntimeException r) {
                 System.out.println("try again");

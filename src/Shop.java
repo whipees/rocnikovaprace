@@ -8,6 +8,7 @@ public class Shop {
     private Random r = new Random();
     private int points;
 
+
     private int correctCounter;
 
     public Shop() {
@@ -32,44 +33,32 @@ public class Shop {
     public void openShop() {
         System.out.println(m.shopMenu());
         // TODO: 23.05.2023 muzu si nakoupit healy a skipy, bude davat otazky a veci za free
-
-        options();
-
-    }
-
-    public void options() {
         System.out.println(m.optionsText());
-        int choice = sc.nextInt();
+
         boolean check = true;
-
-            while (check) {
-                try {
-                    switch (choice) {
-                        case 1:
-                            System.out.println(gamble());
-                            check = false;
-                            break;
-                        case 2:
-                            System.out.println("Fd");
-                            break;
-                        case 3:
-                            System.out.println("Dasdsadasd");
-                            break;
-                        case 4:
-                            check = false;
-                            break;
-                        default:
-                            throw new RuntimeException();
-                    }
+        while (check) {
+            try {
+                switch (sc.nextInt()) {
+                    default -> throw new RuntimeException();
 
 
-                } catch(RuntimeException r){
-                    System.out.println("Try again");
-                    sc.nextLine();
+
+                    case 1 -> check = false;
+                    case 2 -> System.out.println(gamble());
+                    case 3 -> System.out.println("Dasdsadasd");
+                    case 4 -> buyHeals();
                 }
+            } catch(RuntimeException r){
+                System.out.println("Try again");
+                sc.nextLine();
             }
-
+        }
     }
+
+
+
+
+
 
     public String gamble() {
         m.gambleText();
@@ -114,8 +103,42 @@ public class Shop {
         } else if (correctCounter < 1) {
             return "Are you for real, meh, nothing for you";
         }
-        return "You now have" + correctCounter + " points";
+        System.out.println("You now have" + getPoints() + " points");
+        return null;
 
+
+    }
+
+    public void buyHeals(){
+        Game g = new Game();
+        System.out.println("You have: "+ points+ " Points");
+        System.out.println("How many heals do you want to buy? \n " +
+                "1) 1, PRICE: 2 Points \n" +
+                "2) 2  PRICE: 4 Points\n" +
+                "3) 3 PRICE: 6 Points");
+
+        switch (sc.nextInt()){
+            case 1:
+                if (points>= 2){
+                    g.getP().setHealth(g.getP().getHealth()+1);
+                    System.out.println(g.getP().getHealth());
+                    System.out.println("1 heal added to your inventory");
+                }else {
+                    System.out.println("You don't have enough points");
+                }
+                break;
+            case 2:
+                if (points>=4){
+                    System.out.println(g.getHealercheck());
+                    System.out.println("2 heals added to your inventory");
+                     g.setHealercheck(g.getHealercheck()+1);
+                    System.out.println(g.getHealercheck());
+                }else {
+                    System.out.println("You don't have enough points");
+                }
+                break;
+
+        }
 
     }
 }
