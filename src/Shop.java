@@ -74,8 +74,8 @@ public class Shop {
         setCorrectCounter(0);
 
         for (int i = 0; i < 3; i++) {
-            int a = r.nextInt(20) - 10;
-            int b = r.nextInt(20);
+            int a = r.nextInt(300) - 100;
+            int b = r.nextInt(500);
             int ans = a + b;
 
 
