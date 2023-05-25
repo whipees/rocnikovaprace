@@ -9,7 +9,7 @@ public class Shop {
     private int points;
 
     /**
-     * counts corrext answers in gamble
+     * counts correct answers in gamble
      */
     private int correctCounter;
 
@@ -32,9 +32,10 @@ public class Shop {
         this.correctCounter = correctCounter;
     }
 
-    /**
+  /**
      * method that opens when player pick shop in game
      * plays enter message and opens switch for choices
+     * @param game Game class
      */
     public void openShop(Game game) {
         System.out.println(m.shopMenu());
@@ -68,6 +69,7 @@ public class Shop {
      *
      * @return num of points playr gets
      */
+
     public String gamble() {
         m.gambleText();
         setCorrectCounter(0);
@@ -118,7 +120,8 @@ public class Shop {
     }
 
     /**
-     * method for buying heals for points
+     * Method for buying heals
+     * @param game Game class
      */
     public void buyHeals(Game game) {
         boolean check = true;
@@ -166,6 +169,10 @@ public class Shop {
         }
     }
 
+    /**
+     * Method for buying skips
+     * @param game Game class
+     */
     public void buySkips(Game game){
         boolean check = true;
         System.out.println("You have: " + points + " Points");
