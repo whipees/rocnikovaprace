@@ -1,7 +1,0 @@
-Welcome to the Haunted house, you need to get out of here as soon as possible.
-To escape this crazy place, you'll need to fight enemies in every of these rooms.
-There are 15 rooms.
-You have the ability to skip one room twice in this game.
-You also have the ability to gain 4 health points 3 times.
-Your name is Laura and you have 10 health points, if you win with less than four health you get 5 more, so it should be easy to get out of here.
-If you lose, the game will restart, so play until you win haha.

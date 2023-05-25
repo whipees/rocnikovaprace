@@ -94,7 +94,7 @@ public class Game {
 
     public void script() {
         try {
-            File script = new File("untitled/script.txt");
+            File script = new File("script.txt");
             Scanner sc = new Scanner(script);
             while (sc.hasNextLine()) {
                 String data = sc.nextLine();
