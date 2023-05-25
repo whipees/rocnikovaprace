@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Shop extends Game {
+public class Shop{
     private Scanner sc = new Scanner(System.in);
     private Messages m = new Messages();
     private Random r = new Random();
@@ -36,7 +36,7 @@ public class Shop extends Game {
      * method that opens when player pick shop in game
      * plays enter message and opens switch for choices
      */
-    public void openShop() {
+    public void openShop(Game game) {
         System.out.println(m.shopMenu());
 
         System.out.println(m.optionsText());
@@ -48,13 +48,12 @@ public class Shop extends Game {
                     default -> throw new RuntimeException();
 
 
-
                     case 1 -> check = false;
                     case 2 -> System.out.println(gamble());
                     case 3 -> System.out.println("Dasdsadasd");
-                    case 4 -> buyHeals();
+                    case 4 -> buyHeals(game);
                 }
-            } catch(RuntimeException r){
+            } catch (RuntimeException r) {
                 System.out.println("Try again");
                 sc.nextLine();
             }
@@ -65,6 +64,7 @@ public class Shop extends Game {
     /**
      * Method for gamble choice
      * makes math quiz for points
+     *
      * @return num of points playr gets
      */
     public String gamble() {
@@ -96,7 +96,7 @@ public class Shop extends Game {
                     sc.nextLine();
                 }
             }
-            }
+        }
 
         if (correctCounter == 3) {
             setPoints(getPoints() + 5);
@@ -119,27 +119,27 @@ public class Shop extends Game {
     /**
      * method for buying heals for points
      */
-    public void buyHeals(){
-        System.out.println("You have: "+ points+ " Points");
+    public void buyHeals(Game game) {
+        System.out.println("You have: " + points + " Points");
         System.out.println("How many heals do you want to buy? \n " +
                 "1) 1, PRICE: 2 Points \n" +
                 "2) 2  PRICE: 4 Points\n" +
                 "3) 3 PRICE: 6 Points");
 
-        switch (sc.nextInt()){
+        switch (sc.nextInt()) {
             case 1:
-                if (points>= 2){
-                    setHealercheck(8);
+                if (points >= 2) {
+                    game.setHealercheck(game.getHealercheck() + 1);
                     System.out.println("1 heal added to your inventory");
-                    System.out.println("You now have: "+ getHealercheck());
-                }else {
+                    System.out.println("You now have: " + game.getHealercheck());
+                } else {
                     System.out.println("You don't have enough points");
                 }
                 break;
             case 2:
-                if (points>=4){
+                if (points >= 4) {
                     System.out.println("2 heals added to your inventory");
-                }else {
+                } else {
                     System.out.println("You don't have enough points");
                 }
                 break;

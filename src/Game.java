@@ -20,14 +20,15 @@ public class Game {
     /**
      * This int checks if player can still skip a room
      */
-    private int skipChoice = 2;
+    private int skipChoice;
     /**
      * This int checks if player can still heal
      */
-    private int healercheck = 3;
+    private int healercheck;
 
     public Game() {
-
+        this.healercheck = 3;
+        this.skipChoice = 2;
     }
 
     public Messages getM() {
@@ -151,7 +152,7 @@ public class Game {
                         }
                     }
                     case 3 -> System.out.println(heal());
-                    case 4 -> s.openShop();
+                    case 4 -> s.openShop(this);
 
                 }
             } catch (RuntimeException r) {
