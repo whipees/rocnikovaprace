@@ -137,7 +137,7 @@ public class Game {
         boolean check = true;
         while (check) {
             System.out.println(m.choiceQ());
-            System.out.println("Num of healers: "+ getHealercheck() + " Num of Skippers: "+ skipChoice);
+            System.out.println("Num of healers: "+ getHealercheck() + " Num of Skippers: "+ skipChoice + " Your health: "+ p.health);
             try {
                 switch (sc.nextInt()) {
                     default -> throw new RuntimeException();
@@ -153,7 +153,6 @@ public class Game {
                     }
                     case 3 -> System.out.println(heal());
                     case 4 -> s.openShop(this);
-
                 }
             } catch (RuntimeException r) {
                 System.out.println("try again");
@@ -161,14 +160,13 @@ public class Game {
             }
         }
     }
-
     /**
      *
      * @param cycle returns the room you are in
      * @return what room you are in
      */
     public String roomReturn(int cycle) {
-        return "You are in a room " + cycle + " " + "enemy there has: " + game.get(cycle).health + " " + "health";
+        return "You are in a room " + cycle + " " + "enemy there has: " + game.get(cycle).health + " " + "health  ";
     }
 
     /**
@@ -178,17 +176,19 @@ public class Game {
      * if you win with more, nothing for you
      * if you lose, game restarts
      */
-
     public String fight(int a) {
+        Scanner sc = new Scanner(System.in);
         boolean checker = true;
         System.out.println(m.luckykM());
         while (checker) {
+            System.out.println("press enter to fight");
+            sc.nextLine();
             game.get(a).health--;
             if (game.get(a).health < 1) {
                 checker = false;
             } else {
                 p.health--;
-                System.out.println("your health is: " + p.getHealth());
+                System.out.println("Enemy striked back, now your health is: " + p.getHealth()+ " And its health is: "+ game.get(a).health);
 
                 if (p.health < 1) {
                     checker = false;
@@ -201,10 +201,10 @@ public class Game {
         } else {
             if (p.health < 4) {
                 p.setHealth(p.health + 5);
-                return "congratulations, you defeated the enemy and gained plus 5 health... you now have: " + p.health;
+                return "congratulations, you defeated the enemy and gained plus 5 health";
             }
 
-            return "congratulations, you defeated the enemy... you now have: " + p.health;
+            return "congratulations, you defeated the enemy";
         }
     }
 
@@ -236,6 +236,7 @@ public class Game {
             return "You cannot heal anymore";
         }
     }
+
 
 
 
