@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Shop {
+public class Shop extends Game {
     private Scanner sc = new Scanner(System.in);
     private Messages m = new Messages();
     private Random r = new Random();
@@ -120,7 +120,6 @@ public class Shop {
      * method for buying heals for points
      */
     public void buyHeals(){
-        Game g = new Game();
         System.out.println("You have: "+ points+ " Points");
         System.out.println("How many heals do you want to buy? \n " +
                 "1) 1, PRICE: 2 Points \n" +
@@ -130,19 +129,16 @@ public class Shop {
         switch (sc.nextInt()){
             case 1:
                 if (points>= 2){
-                    g.getP().setHealth(g.getP().getHealth()+1);
-                    System.out.println(g.getP().getHealth());
+                    setHealercheck(8);
                     System.out.println("1 heal added to your inventory");
+                    System.out.println("You now have: "+ getHealercheck());
                 }else {
                     System.out.println("You don't have enough points");
                 }
                 break;
             case 2:
                 if (points>=4){
-                    System.out.println(g.getHealercheck());
                     System.out.println("2 heals added to your inventory");
-                     g.setHealercheck(g.getHealercheck()+1);
-                    System.out.println(g.getHealercheck());
                 }else {
                     System.out.println("You don't have enough points");
                 }

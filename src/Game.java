@@ -20,11 +20,11 @@ public class Game {
     /**
      * This int checks if player can still skip a room
      */
-    private int skipChoice;
+    private int skipChoice = 2;
     /**
      * This int checks if player can still heal
      */
-    private int healercheck;
+    private int healercheck = 3;
 
     public Game() {
 
@@ -116,8 +116,6 @@ public class Game {
         script();
         game = new ArrayList<>();
         p.setHealth(10);
-        setHealercheck(3);
-        setSkipChoice(2);
         createHouse();
 
         for (int i = 0; i < 15; i++) {
@@ -138,7 +136,7 @@ public class Game {
         boolean check = true;
         while (check) {
             System.out.println(m.choiceQ());
-            System.out.println("Num of healers: "+ healercheck + " Num of Skippers: "+ skipChoice);
+            System.out.println("Num of healers: "+ getHealercheck() + " Num of Skippers: "+ skipChoice);
             try {
                 switch (sc.nextInt()) {
                     default -> throw new RuntimeException();
