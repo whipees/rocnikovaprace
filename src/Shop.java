@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Shop{
+public class Shop {
     private Scanner sc = new Scanner(System.in);
     private Messages m = new Messages();
     private Random r = new Random();
@@ -39,19 +39,20 @@ public class Shop{
     public void openShop(Game game) {
         System.out.println(m.shopMenu());
 
-        System.out.println(m.optionsText());
+
 
         boolean check = true;
         while (check) {
             try {
+                System.out.println(m.optionsText());
                 switch (sc.nextInt()) {
                     default -> throw new RuntimeException();
 
 
-                    case 1 -> check = false;
-                    case 2 -> System.out.println(gamble());
-                    case 3 -> System.out.println("Dasdsadasd");
-                    case 4 -> buyHeals(game);
+                    case 1 -> System.out.println(gamble());
+                    case 2 -> buyHeals(game);
+                    case 3 -> buySkips(game);
+                    case 4 -> check = false;
                 }
             } catch (RuntimeException r) {
                 System.out.println("Try again");
@@ -120,31 +121,96 @@ public class Shop{
      * method for buying heals for points
      */
     public void buyHeals(Game game) {
+        boolean check = true;
         System.out.println("You have: " + points + " Points");
         System.out.println("How many heals do you want to buy? \n " +
                 "1) 1, PRICE: 2 Points \n" +
-                "2) 2  PRICE: 4 Points\n" +
-                "3) 3 PRICE: 6 Points");
+                "2) 2,  PRICE: 4 Points\n" +
+                "3) 3, PRICE: 6 Points");
+        while (check) {
+            switch (sc.nextInt()) {
+                case 1:
+                    if (points >= 2) {
+                        game.setHealercheck(game.getHealercheck() + 1);
+                        System.out.println("1 heal added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                case 2:
+                    if (points >= 4) {
+                        game.setHealercheck(game.getHealercheck() + 2);
+                        System.out.println("2 heals added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                case 3:
+                    if (points >= 6) {
+                        game.setHealercheck(game.getHealercheck() + 3);
+                        System.out.println("3 heals added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                default:
+                    System.out.println("Wrong input");
 
-        switch (sc.nextInt()) {
-            case 1:
-                if (points >= 2) {
-                    game.setHealercheck(game.getHealercheck() + 1);
-                    System.out.println("1 heal added to your inventory");
-                    System.out.println("You now have: " + game.getHealercheck());
-                } else {
-                    System.out.println("You don't have enough points");
-                }
-                break;
-            case 2:
-                if (points >= 4) {
-                    System.out.println("2 heals added to your inventory");
-                } else {
-                    System.out.println("You don't have enough points");
-                }
-                break;
+            }
+        }
+    }
 
+    public void buySkips(Game game){
+        boolean check = true;
+        System.out.println("You have: " + points + " Points");
+        System.out.println("How many skips do you want to buy? \n " +
+                "1) 1, PRICE: 2 Points \n" +
+                "2) 2,  PRICE: 4 Points\n" +
+                "3) 3, PRICE: 6 Points");
+        while (check) {
+            switch (sc.nextInt()) {
+                case 1:
+                    if (points >= 2) {
+                        game.setSkipChoice(game.getSkipChoice()+1);
+                        System.out.println("1 heal added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                case 2:
+                    if (points >= 4) {
+                        game.setSkipChoice(game.getSkipChoice() + 2);
+                        System.out.println("2 heals added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                case 3:
+                    if (points >= 6) {
+                        game.setSkipChoice(game.getSkipChoice() + 3);
+                        System.out.println("3 heals added to your inventory");
+                        System.out.println("You now have: " + game.getHealercheck());
+                    } else {
+                        System.out.println("You don't have enough points");
+                    }
+                    check = false;
+                    break;
+                default:
+                    System.out.println("Wrong input");
+
+            }
         }
 
     }
+
 }

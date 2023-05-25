@@ -41,10 +41,10 @@ public  class Messages {
     public String optionsText(){
         return """
                 Choose your option:\s
-                 1) Exit shop \s
-                2) Gamble\s
+                 1)Gamble  \s
+                2) Buy heals\s
                 3) Buy skippers\s
-                4) Buy heals
+                4) Exit shop
                 """;
     }
 
