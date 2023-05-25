@@ -71,7 +71,6 @@ public class Shop {
      */
 
     public String gamble() {
-        m.gambleText();
         setCorrectCounter(0);
 
         for (int i = 0; i < 3; i++) {
@@ -126,13 +125,14 @@ public class Shop {
     public void buyHeals(Game game) {
         boolean check = true;
         System.out.println("You have: " + points + " Points");
-        System.out.println("How many heals do you want to buy? \n " +
-                "1) 1, PRICE: 2 Points \n" +
-                "2) 2,  PRICE: 4 Points\n" +
-                "3) 3, PRICE: 6 Points");
+        System.out.println("""
+                How many heals do you want to buy?\s
+                 1) 1, PRICE: 2 Points\s
+                2) 2,  PRICE: 4 Points
+                3) 3, PRICE: 6 Points""");
         while (check) {
             switch (sc.nextInt()) {
-                case 1:
+                case 1 -> {
                     if (points >= 2) {
                         game.setHealercheck(game.getHealercheck() + 1);
                         System.out.println("1 heal added to your inventory");
@@ -141,8 +141,8 @@ public class Shop {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     if (points >= 4) {
                         game.setHealercheck(game.getHealercheck() + 2);
                         System.out.println("2 heals added to your inventory");
@@ -151,8 +151,8 @@ public class Shop {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     if (points >= 6) {
                         game.setHealercheck(game.getHealercheck() + 3);
                         System.out.println("3 heals added to your inventory");
@@ -161,10 +161,8 @@ public class Shop {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                default:
-                    System.out.println("Wrong input");
-
+                }
+                default -> System.out.println("Wrong input");
             }
         }
     }
@@ -176,23 +174,24 @@ public class Shop {
     public void buySkips(Game game){
         boolean check = true;
         System.out.println("You have: " + points + " Points");
-        System.out.println("How many skips do you want to buy? \n " +
-                "1) 1, PRICE: 2 Points \n" +
-                "2) 2,  PRICE: 4 Points\n" +
-                "3) 3, PRICE: 6 Points");
+        System.out.println("""
+                How many skips do you want to buy?\s
+                 1) 1, PRICE: 2 Points\s
+                2) 2,  PRICE: 4 Points
+                3) 3, PRICE: 6 Points""");
         while (check) {
             switch (sc.nextInt()) {
-                case 1:
+                case 1 -> {
                     if (points >= 2) {
-                        game.setSkipChoice(game.getSkipChoice()+1);
+                        game.setSkipChoice(game.getSkipChoice() + 1);
                         System.out.println("1 heal added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
                     } else {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     if (points >= 4) {
                         game.setSkipChoice(game.getSkipChoice() + 2);
                         System.out.println("2 heals added to your inventory");
@@ -201,8 +200,8 @@ public class Shop {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     if (points >= 6) {
                         game.setSkipChoice(game.getSkipChoice() + 3);
                         System.out.println("3 heals added to your inventory");
@@ -211,10 +210,8 @@ public class Shop {
                         System.out.println("You don't have enough points");
                     }
                     check = false;
-                    break;
-                default:
-                    System.out.println("Wrong input");
-
+                }
+                default -> System.out.println("Wrong input");
             }
         }
 

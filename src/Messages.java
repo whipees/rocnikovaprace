@@ -52,9 +52,7 @@ public  class Messages {
      * Method if gamble
      * @return funny message if you pick gamble
      */
-    public String gambleText(){
-        return " Oh, I see that you picked gamble, hahahah. Let's see if you can answer there questions";
-    }
+
 
 
 
