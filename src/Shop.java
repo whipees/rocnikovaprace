@@ -134,6 +134,7 @@ public class Shop {
             switch (sc.nextInt()) {
                 case 1 -> {
                     if (points >= 2) {
+                        setPoints(getPoints()-2);
                         game.setHealercheck(game.getHealercheck() + 1);
                         System.out.println("1 heal added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
@@ -144,6 +145,7 @@ public class Shop {
                 }
                 case 2 -> {
                     if (points >= 4) {
+                        setPoints(getPoints()-4);
                         game.setHealercheck(game.getHealercheck() + 2);
                         System.out.println("2 heals added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
@@ -154,6 +156,7 @@ public class Shop {
                 }
                 case 3 -> {
                     if (points >= 6) {
+                        setPoints(getPoints()-6);
                         game.setHealercheck(game.getHealercheck() + 3);
                         System.out.println("3 heals added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
@@ -183,6 +186,7 @@ public class Shop {
             switch (sc.nextInt()) {
                 case 1 -> {
                     if (points >= 2) {
+                        setPoints(getPoints()-2);
                         game.setSkipChoice(game.getSkipChoice() + 1);
                         System.out.println("1 heal added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
@@ -193,9 +197,10 @@ public class Shop {
                 }
                 case 2 -> {
                     if (points >= 4) {
+                        setPoints(getPoints()-4);
                         game.setSkipChoice(game.getSkipChoice() + 2);
                         System.out.println("2 heals added to your inventory");
-                        System.out.println("You now have: " + game.getHealercheck());
+                        System.out.println("You now have: " + game.getHealercheck()+ "heals");
                     } else {
                         System.out.println("You don't have enough points");
                     }
@@ -203,6 +208,7 @@ public class Shop {
                 }
                 case 3 -> {
                     if (points >= 6) {
+                        setPoints(getPoints()-6);
                         game.setSkipChoice(game.getSkipChoice() + 3);
                         System.out.println("3 heals added to your inventory");
                         System.out.println("You now have: " + game.getHealercheck());
